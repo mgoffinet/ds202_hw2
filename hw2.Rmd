@@ -1,0 +1,89 @@
+---
+title: 'Homework #2'
+author: "McKenna Goffinet; mgoffinet"
+date: "2/03/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+
+install.packages('ggplot2')
+
+## R commands
+
+1)
+```{r}
+cel <- c((15-32)*(5/9), (24-32)*(5/9))
+names(cel) <- c('low', 'high')
+cel
+```
+
+2)
+```{r}
+vec200 <- rep(c(3,1), times=100)
+vec200
+```
+
+3)
+```{r}
+a <- seq(1, 2001)
+b <- sqrt(a) == round(sqrt(a))
+numPerfect <- sum(b)
+numPerfect
+```
+
+## Cars and Mileage
+
+
+
+1)
+```{r}
+a <- mpg[order(-mpg$hwy), ]
+top3 <- a[1:3, ]
+top3
+```
+The three most fuel-efficient models in terms of highway mileage are the 1999 Volkswagen Jetta (44 mpg), the 1999 Volkswagen New Beetle (manual, 44 mpg), and the 1999 Volkswagen New Beetle (automatic, 41 mpg).
+
+2)
+```{r}
+a <- mpg[mpg$class == 'compact', ]
+numCompact <- dim(a)[1]
+numCompact
+```
+There are 47 compact models included in this data set.
+
+3)
+```{r}
+plot(mpg$hwy, mpg$cty)
+```
+
+There is a strong positive correlation between highway and city miles per gallon, evident in the strong positively-sloped linear relationship shown on the scatter plot. This indicates that as highway mpg increases, city mpg also increases, so models with a high fuel-efficiency in terms of highway mpg also have a relatively high fuel-efficiency in terms of city mpg.
+
+4)
+```{r}
+cars2008 <- mpg[mpg$year == 2008, ]
+cars1999 <- mpg[mpg$year == 1999, ]
+
+boxplot(cars1999$hwy, cars2008$hwy, names = c('1999', '2008'))
+mean(cars1999$hwy)
+median(cars1999$hwy)
+mean(cars2008$hwy)
+median(cars2008$hwy)
+```
+
+Both the 1999 models and the 2008 models have means similar to their medians, indicating that there is no significant skew to the highway mpg data for either year. The boxplots above show no significant difference between the highway mpgs of 2008 models and 1999 models. This is supported by the plots having roughly the same range and very similar measures of center.
+
+```{r}
+boxplot(cars1999$cty, cars2008$cty, names = c('1999', '2008'))
+mean(cars1999$cty)
+median(cars1999$cty)
+mean(cars2008$cty)
+median(cars2008$cty)
+```
+
+Both the 1999 models and the 2008 models have means similar to their medians, indicating that there is no significant skew to the city mpg data for either year. The boxplots above show no significant difference between the city mpgs of 2008 models and 1999 models. This is supported by the plots having roughly the same range and very similar measures of center.
+
+From lack of evidence for a significant difference between mpg in the city and on the highway of models from each year, we can conclude that the fuel efficieny of models from 2008 is not significantly better than fuel efficiency of models from 1999.
